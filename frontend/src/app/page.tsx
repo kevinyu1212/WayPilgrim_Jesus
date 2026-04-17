@@ -1,65 +1,68 @@
-import Image from "next/image";
+﻿import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Mountain, BookOpen, Heart, PenLine } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[#fdfcfb] text-[#4a4a4a] p-6 md:p-12">
+      {/* Header: 순례자 환대 */}
+      <header className="max-w-4xl mx-auto mb-12">
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-light text-stone-700">평안하신가요, 순례자님?</h1>
+            <p className="text-sm text-stone-400 mt-1">오늘의 여정을 이곳에 기록해보세요.</p>
+          </div>
+          <Badge variant="outline" className="px-3 py-1 font-light border-stone-200">
+            새신자 단계
+          </Badge>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
+        {/* 오늘의 말씀 (Pilgrim Guide Engine 연동 예정) */}
+        <Card className="border-none bg-stone-100/50 shadow-none">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-stone-500">
+              <BookOpen size={16} /> 오늘의 발자취
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg font-serif leading-relaxed text-stone-700">
+              "주의 말씀은 내 발에 등이요 내 길에 빛이니이다."
+            </p>
+            <p className="text-xs text-stone-400 mt-4 text-right">시편 119:105</p>
+          </CardContent>
+        </Card>
+
+        {/* 영적 기상도 (Context Engine 연동 예정) */}
+        <Card className="border-none bg-stone-100/50 shadow-none">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium flex items-center gap-2 text-stone-500">
+              <Mountain size={16} /> 나의 영적 기상도
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex gap-3">
+            {["평안", "흔들림", "안개", "맑음"].map((status) => (
+              <Button key={status} variant="outline" className="rounded-full text-xs font-light border-stone-200 hover:bg-white">
+                {status}
+              </Button>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* 퀵 액션 */}
+        <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Button variant="ghost" className="h-24 flex flex-col gap-2 border border-dashed border-stone-200 hover:bg-stone-50">
+            <PenLine size={20} className="text-stone-400" />
+            <span className="text-xs">묵상 쓰기</span>
+          </Button>
+          <Button variant="ghost" className="h-24 flex flex-col gap-2 border border-dashed border-stone-200 hover:bg-stone-50">
+            <Heart size={20} className="text-stone-400" />
+            <span className="text-xs">중보 요청</span>
+          </Button>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
